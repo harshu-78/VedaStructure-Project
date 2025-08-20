@@ -5,13 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Navbar with Sticky Dropdown</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/banner@11/banner-bundle.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
   <link href="./src/output.css" rel="stylesheet">
+ 
  
 </head>
 <body class="bg-gray-50">
 
-<!-- Top -->
+<!-- Top Offer Bar -->
 <div class="bg-yellow-500 text-white text-sm py-1 overflow-hidden">
   <div class="scroll-text">
     Book online Pooja services and get 10% off <span class="font-semibold">RABBIT30</span> at Checkout — Ends Soon! ⏳
@@ -29,16 +31,11 @@
       0% { transform: translateX(100%); }
       100% { transform: translateX(-100%); }
     }
-     .banner, .banner-slide {
-    height: 530px ;
-    }
-     .banner-button-prev,.banner-button-next{
+
+    .swiper-button-prev,.swiper-button-next{
     background:#fff;width:48px;height:48px;border-radius:9999px;
     box-shadow:0 8px 18px rgba(0,0,0,0.3);color:#e29522;
   }
-  .banner-button-prev::after,.banner-button-next::after{font-size:20px;font-weight:700;}
-  .banner-button-prev:hover,.banner-button-next:hover{transform:scale(1.15);transition:0.3s;}
-
   @keyframes bigUp {
     0%{opacity:0; transform:translateY(100px) scale(.6);}
     100%{opacity:1; transform:translateY(0) scale(1);}
@@ -54,213 +51,741 @@
   .animate-delay2{animation:niceBounce .7s .4s both;}
   .animate-delay3{animation:niceBounce .7s .6s both;}
   
+   .mt-12 {
+    margin-top: 12rem !important;
+}
+.mt-14 {
+    margin-top: 19.5rem !important;
+}
+.swiper-button-prev,
+.swiper-button-next {
+  background: #fff;
+  width: 48px;
+  height: 48px;
+  border-radius: 9999px;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.3);
+  color: #e29522;
+}
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 20px;
+  font-weight: 700;
+}
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  transform: scale(1.15);
+  transition: 0.3s;
+}
+
+.swiper-pagination-bullet {
+  background: #9ca3af; 
+  opacity: 1;
+}
+.swiper-pagination-bullet-active {
+  background: #374151; 
+}
+
+@media (max-width: 768px) {
+  
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: none;
+  }
+  .swiper-pagination {
+    display: none !important;
+  }
+}
+
+
+.orbit {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  animation: orbit 6s linear infinite;
+}
+
+
+.logo-spin {
+  position: absolute;
+  top: -10px;   
+  left: 66.5%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid #f4b61e;
+  box-shadow: 0 4px 12px rgba(244,182,30,0.4);
+  animation: rotate 8s linear infinite;
+  
+}
+@keyframes rotate{
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+ .service-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.service-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 2px solid transparent;
+  border-top-width: 4px;
+  border-radius: 0.75rem;
+  transition: all 0.3s ease-in-out;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.service-card:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+.service-card:hover::before {
+  border-color: #f97316; /* orange */
+  box-shadow: 0 0 20px rgba(249, 115, 22, 0.5);
+}
+
   </style>
 
-<!-- middle  -->
-<div class="flex items-center justify-between px-6 py-4 border-b border-gray-200 bg-white">
 
-  <!-- logo -->
-
-  <div class="flex items-center space-x-2">
-    <img src="logo.png" alt="Logo" class="h-12 ">
+<!-- Middle Section -->
+<div class="flex items-center justify-between px-4 py-3 border-b border-gray-200 bg-white">
+  <!-- Logo -->
+  <div class="flex items-center">
+    <img src="images/logo.png" alt="Logo" class="h-10 md:h-12">
   </div>
 
-  <!-- search bar -->
+  <!-- Desktop Search -->
+  <div
+    class="hidden md:flex items-center w-1/2 max-w-xl bg-white shadow-md rounded-full overflow-hidden border border-gray-200 focus-within:ring-2 focus-within:ring-yellow-400">
+    <input type="text" placeholder="Search products..."
+      class="flex-1 px-3 py-2 outline-none text-gray-700">
+    <button
+      class="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 shadow-md transform hover:scale-105 transition">
+      <i class="fa-solid fa-magnifying-glass" text-yellow text-lg "></i>
+    </button>
+  </div>
 
-<div class="flex items-center w-1/2 max-w-xl bg-white shadow-md rounded-full overflow-hidden border border-gray-200 focus-within:ring-2 focus-within:ring-yellow-400">
-  <input type="text" placeholder="Search products..."
-    class="flex-1 px-3 py-2 outline-none text-gray-700">
-  <button class="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 shadow-md transform hover:scale-105 transition">
-    <i class="fas fa-search text-white text-lg"></i>
-  </button>
-</div>
-
-   <!-- account/cart -->
-
-  <div class="flex items-center space-x-6 text-gray-700">
-    <a href="#" class="flex items-center gap-1 hover:text-yellow-600">
-      <i class="fas fa-user"></i> <span class="hidden md:inline">Account</span>
+  <!-- Right (Account + Cart + Hamburger) -->
+  <div class="flex items-center space-x-4 text-gray-700">
+    <!-- Account (desktop only) -->
+    <a href="#" class="hidden md:flex items-center gap-1 hover:text-yellow-600">
+      <i class="fas fa-user"></i> <span>Account</span>
     </a>
+
+    <!-- Cart -->
     <a href="#" class="relative hover:text-yellow-600">
-      <i class="fas fa-shopping-cart"></i>
-      <span class="absolute -top-1 -right-2 bg-red-500 text-white text-xs px-1 rounded-full">2</span>
+      <i class="fas fa-shopping-cart text-xl"></i>
+      <span
+        class="absolute -top-1 -right-2 bg-red-500 text-white text-xs px-1 rounded-full">2</span>
     </a>
+
+    <!-- Hamburger (mobile only) -->
+    <button id="menu-btn" class="md:hidden focus:outline-none">
+      <i class="fas fa-bars text-2xl"></i>
+    </button>
   </div>
 </div>
 
+<!-- Mobile Search (hidden on desktop) -->
+<div class="md:hidden px-4 py-2 bg-white border-b border-gray-200">
+  <div
+    class="flex items-center w-full bg-white shadow-md rounded-full overflow-hidden border border-gray-200 focus-within:ring-2 focus-within:ring-yellow-400">
+    <input type="text" placeholder="Search products..."
+      class="flex-1 px-3 py-2 outline-none text-gray-700">
+    <button
+      class="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 shadow-md transform hover:scale-105 transition">
+     <i class="fa-solid fa-magnifying-glass text-white text-lg"></i>
+    </button>
+  </div>
+</div>
 
-<!-- Bottom -->
-<nav class="bg-white border-b border-gray-200">
-  <ul class="flex flex-wrap items-center justify-center space-x-6 text-gray-800 text-sm font-medium tracking-wide py-3">
-    
-    <li><a href="#" class="hover:text-yellow-600 px-2">Shop All</a></li>
-
-    <!-- flower -->
-    <li class="relative">
-      <button class="hover:text-yellow-600 flex items-center gap-1 px-2 dropdown-btn">
-        Flower <i class="fas fa-angle-down"></i>
+<!-- Bottom Navbar (Desktop) -->
+<nav class="bg-white border-b border-gray-200 hidden md:block">
+  <ul
+    class="flex flex-wrap items-center justify-center space-x-6 text-gray-800 text-sm font-medium tracking-wide py-3">
+    <li><a href="index.html" class="hover:text-yellow-600 px-2">Home</a></li>
+    <li class="relative group">
+      <button class="hover:text-yellow-600 flex items-center gap-1 px-2">
+        Puja Essentials <i class="fas fa-angle-down"></i>
       </button>
-      <div class="dropdown hidden absolute left-0 top-full bg-white shadow-lg border rounded-md w-40 z-10">
-        <a href="#" class="block px-4 py-2 hover:bg-yellow-100">Indica</a>
-        <a href="#" class="block px-4 py-2 hover:bg-yellow-100">Sativa</a>
-        <a href="#" class="block px-4 py-2 hover:bg-yellow-100">Hybrid</a>
+      <div
+        class="dropdown hidden absolute left-0 top-full bg-white shadow-lg border rounded-md w-40 z-10 group-hover:block">
+        <a href="#" class="block px-4 py-2 hover:bg-yellow-100">Puja Samagri</a>
+        <a href="#" class="block px-4 py-2 hover:bg-yellow-100">Yantras</a>
+        <a href="#" class="block px-4 py-2 hover:bg-yellow-100">Incense & Diyas</a>
       </div>
     </li>
-
-    <li><a href="#" class="hover:text-yellow-600 px-2">Edibles</a></li>
-
-    <!-- Concentrates -->
-    <li class="relative">
-      <button class="hover:text-yellow-600 flex items-center gap-1 px-2 dropdown-btn">
-        Concentrates <i class="fas fa-angle-down"></i>
+    <li><a href="#" class="hover:text-yellow-600 px-2">Astrology</a></li>
+    <li class="relative group">
+      <button class="hover:text-yellow-600 flex items-center gap-1 px-2">
+        Healing Remedies <i class="fas fa-angle-down"></i>
       </button>
-      <div class="dropdown hidden absolute left-0 top-full bg-white shadow-lg border rounded-md w-44 z-10">
-        <a href="#" class="block px-4 py-2 hover:bg-yellow-100">Shatter</a>
-        <a href="#" class="block px-4 py-2 hover:bg-yellow-100">Wax</a>
-        <a href="#" class="block px-4 py-2 hover:bg-yellow-100">Oil</a>
+      <div
+        class="dropdown hidden absolute left-0 top-full bg-white shadow-lg border rounded-md w-44 z-10 group-hover:block">
+        <a href="#" class="block px-4 py-2 hover:bg-yellow-100">Spiritual Fragrances</a>
+        <a href="#" class="block px-4 py-2 hover:bg-yellow-100">Energy Cleansing</a>
+        <a href="#" class="block px-4 py-2 hover:bg-yellow-100">Ayurvedic Oils</a>
       </div>
     </li>
-
-    <li><a href="#" class="hover:text-yellow-600 px-2">Mushrooms</a></li>
-
-    <!-- Promotions -->
-    <li class="relative">
-      <button class="hover:text-yellow-600 flex items-center gap-1 px-2 dropdown-btn">
-        Promotions <i class="fas fa-angle-down"></i>
+    <li><a href="#" class="hover:text-yellow-600 px-2">Idols & Statues</a></li>
+    <li class="relative group">
+      <button class="hover:text-yellow-600 flex items-center gap-1 px-2">
+        Veda Store <i class="fas fa-angle-down"></i>
       </button>
-      <div class="dropdown hidden absolute left-0 top-full bg-white shadow-lg border rounded-md w-44 z-10">
-        <a href="#" class="block px-4 py-2 hover:bg-yellow-100">Weekly Deals</a>
-        <a href="#" class="block px-4 py-2 hover:bg-yellow-100">Clearance</a>
+      <div
+        class="dropdown hidden absolute left-0 top-full bg-white shadow-lg border rounded-md w-44 z-10 group-hover:block">
+        <a href="#" class="block px-4 py-2 hover:bg-yellow-100">All Products</a>
+        <a href="shop.html" class="block px-4 py-2 hover:bg-yellow-100">Rudraksha</a>
+        <a href="#" class="block px-4 py-2 hover:bg-yellow-100">Gems</a>
+        <a href="#" class="block px-4 py-2 hover:bg-yellow-100">Bracelet</a>
       </div>
     </li>
-
-    <!-- support -->
-    <li class="relative">
-      <button class="hover:text-yellow-600 flex items-center gap-1 px-2 dropdown-btn">
+    <li class="relative group">
+      <button class="hover:text-yellow-600 flex items-center gap-1 px-2">
         Support <i class="fas fa-angle-down"></i>
       </button>
-      <div class="dropdown hidden absolute left-0 top-full bg-white shadow-lg border rounded-md w-44 z-10">
+      <div
+        class="dropdown hidden absolute left-0 top-full bg-white shadow-lg border rounded-md w-44 z-10 group-hover:block">
         <a href="#" class="block px-4 py-2 hover:bg-yellow-100">Contact Us</a>
         <a href="#" class="block px-4 py-2 hover:bg-yellow-100">FAQ</a>
       </div>
     </li>
-
     <li><a href="#" class="hover:text-yellow-600 px-2">Rewards</a></li>
-    <li><a href="#" class="hover:text-yellow-600 px-2">Blog</a></li>
+    <li><a href="#" class="hover:text-yellow-600 px-2">Veda Wisdom</a></li>
   </ul>
 </nav>
 
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-200 px-4 py-3 space-y-2">
 
-<!-- Hero Section -->
+  <a href="#" class="block py-1 hover:text-yellow-600">Home</a>
 
-<div class="banner mybanner">
-  <div class="banner-wrapper">
+  <!-- Puja Essentials -->
+  <div>
+    <button class="flex justify-between w-full py-1 hover:text-yellow-600 dropdown-toggle">
+      Puja Essentials <i class="fas fa-angle-down"></i>
+    </button>
+    <div class="hidden pl-4 space-y-1">
+      <a href="#" class="block hover:text-yellow-600">Puja Samagri</a>
+      <a href="#" class="block hover:text-yellow-600">Yantras</a>
+      <a href="#" class="block hover:text-yellow-600">Incense & Diyas</a>
+    </div>
+  </div>
 
-<div class="banner-slide relative bg-cover bg-center" style="background-image:url('maa durga.jpg')">
-  <div class="absolute inset-0 bg-gradient-to-r from-yellow-300/70 to-orange-600/60"></div>
+  <a href="#" class="block py-1 hover:text-yellow-600">Astrology</a>
 
-  <!-- Parent container -->
-  <div class="relative z-10 flex flex-col md:flex-row items-start justify-between px-24 py-20 min-h-[530px] text-white">
-    
-    <!-- LEFT CONTENT -->
-    <div class="max-w-[520px] space-y-6 animate-bigUp pt-12">
-      <span class="inline-block bg-white text-orange-600 px-5 py-2 rounded-full text-sm font-semibold">
-        Traditional Puja Services
-      </span>
+  <!-- Healing Remedies -->
+  <div>
+    <button class="flex justify-between w-full py-1 hover:text-yellow-600 dropdown-toggle">
+      Healing Remedies <i class="fas fa-angle-down"></i>
+    </button>
+    <div class="hidden pl-4 space-y-1">
+      <a href="#" class="block hover:text-yellow-600">Spiritual Fragrances</a>
+      <a href="#" class="block hover:text-yellow-600">Energy Cleansing</a>
+      <a href="#" class="block hover:text-yellow-600">Ayurvedic Oils</a>
+    </div>
+  </div>
 
-      <h1 class="text-6xl font-bold leading-tight">Divine Blessings</h1>
+  <a href="#" class="block py-1 hover:text-yellow-600">Idols & Statues</a>
 
-      <h3 class="text-2xl font-semibold text-yellow-200">Authentic Puja Ceremonies</h3>
+  <!-- Veda Store -->
+  <div>
+    <button class="flex justify-between w-full py-1 hover:text-yellow-600 dropdown-toggle">
+      Veda Store <i class="fas fa-angle-down"></i>
+    </button>
+    <div class="hidden pl-4 space-y-1">
+      <a href="#" class="block hover:text-yellow-600">All Products</a>
+      <a href="#" class="block hover:text-yellow-600">Rudraksha</a>
+      <a href="#" class="block hover:text-yellow-600">Gems</a>
+      <a href="#" class="block hover:text-yellow-600">Bracelet</a>
+    </div>
+  </div>
 
-      <p class="text-lg text-yellow-100 leading-relaxed">
-        Experience the power of traditional Hindu rituals with our expert pandits.
-        Book online puja services and receive divine blessings at your doorstep.
+  <!-- Support -->
+  <div>
+    <button class="flex justify-between w-full py-1 hover:text-yellow-600 dropdown-toggle">
+      Support <i class="fas fa-angle-down"></i>
+    </button>
+    <div class="hidden pl-4 space-y-1">
+      <a href="#" class="block hover:text-yellow-600">Contact Us</a>
+      <a href="#" class="block hover:text-yellow-600">FAQ</a>
+    </div>
+  </div>
+
+  <a href="#" class="block py-1 hover:text-yellow-600">Rewards</a>
+  <a href="#" class="block py-1 hover:text-yellow-600">Veda Wisdom</a>
+</div>
+
+
+
+<!-- hero section -->
+
+<div class="swiper myswiper">
+  <div class="swiper-wrapper">
+
+    <!-- Slide 1 -->
+    <div class="swiper-slide relative bg-cover bg-center">
+      <video autoplay muted loop class="absolute inset-0 w-full h-full object-cover">
+        <source src="images/banner1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="absolute inset-0 bg-black/50"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-yellow-300/70 to-orange-600/60"></div>
+
+      <div class="relative z-10 flex flex-col md:flex-row items-start justify-between px-4 md:px-24 py-10 md:py-20 min-h-[420px] md:min-h-[530px] text-white">
+        <div class="max-w-full md:max-w-[520px] space-y-4 md:space-y-6 animate-bigUp pt-6 md:pt-12">
+          <span class="inline-block bg-white text-orange-600 px-4 md:px-5 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-semibold">
+            🕉️Traditional Puja Services
+          </span>
+          <h1 class="text-3xl md:text-6xl font-bold leading-tight">Divine Blessings</h1>
+          <h3 class="text-lg md:text-2xl font-semibold text-yellow-200">Authentic Puja Ceremonies</h3>
+          <p class="text-base md:text-lg text-yellow-100 leading-relaxed">
+            Experience the power of traditional Hindu rituals with our expert pandits.
+            Book online puja services and receive divine blessings at your doorstep.
+          </p>
+          <div class="flex flex-wrap gap-2 md:gap-3">
+            <span class="bg-white text-gray-700 px-3 md:px-4 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-medium">Rudraksha Beads</span>
+            <span class="bg-white text-gray-700 px-3 md:px-4 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-medium">Sacred Gemstones</span>
+            <span class="bg-white text-gray-700 px-3 md:px-4 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-medium">Spiritual Jewelry</span>
+          </div>
+          
+          <div class="flex flex-col sm:flex-row gap-3 md:gap-6 mt-4 md:mt-6 w-full">
+            <button class="bg-red-500 h-10 md:h-12 hover:from-orange-300 hover:to-red-600 text-white
+              shadow-lg shadow-red-400/50 hover:shadow-red-500/70 px-6 md:px-10 py-2 md:py-5 rounded-full text-base md:text-lg font-semibold flex items-center gap-2 md:gap-3 transition-all duration-300 w-full sm:w-auto">
+              Book Puja Now
+              <span class="text-lg md:text-xl">→</span>
+            </button>
+            <button class="border h-10 md:h-12 border-white px-6 md:px-8 py-2 rounded-full text-base md:text-lg font-semibold w-full sm:w-auto">
+              View Services
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- slide2 -->
+
+    <div class="swiper-slide relative bg-cover bg-center">
+      <video autoplay muted loop class="absolute inset-0 w-full h-full object-cover">
+        <source src="images/banner2.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="absolute inset-0 bg-black/50"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-yellow-300/70 to-orange-600/60"></div>
+      <div class="relative z-10 flex flex-col items-start md:flex-row md:items-center justify-between px-4 md:px-24 py-10 md:py-20 min-h-[460px] md:min-h-[570px] text-white">
+        <div class="w-full md:max-w-[520px] space-y-4 md:space-y-6 animate-bigUp pt-4 md:pt-12">
+          <span class="inline-block bg-white text-orange-600 px-4 md:px-5 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-semibold">
+            🪷Spiritual Wellness
+          </span>
+          <h1 class="text-3xl md:text-6xl font-bold leading-tight">Inner Peace</h1>
+          <h3 class="text-lg md:text-2xl font-semibold text-yellow-200">Sacred Healing Products</h3>
+          <p class="text-base md:text-lg text-yellow-100 leading-relaxed">
+            Discover ancient wisdom through our collection of authentic spiritual products. Find peace,
+            prosperity, and spiritual growth with sacred items.
+          </p>
+           <div class="flex flex-wrap gap-2 md:gap-3">
+            <span class="bg-white text-gray-700 px-3 md:px-4 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-medium">Rudraksha Beads</span>
+            <span class="bg-white text-gray-700 px-3 md:px-4 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-medium">Sacred Gemstones</span>
+            <span class="bg-white text-gray-700 px-3 md:px-4 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-medium">Spiritual Jewelry</span>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-3 md:gap-6 mt-4 md:mt-6 w-full">
+            <button class="bg-red-500 h-10 md:h-12 hover:from-orange-300 hover:to-red-600 text-white px-6 md:px-10 py-2 md:py-5 rounded-full text-base md:text-lg font-semibold flex items-center gap-2 md:gap-3 transition-all duration-300 w-full sm:w-auto">
+              Shop Products
+              <span class="text-lg md:text-xl">→</span>
+            </button>
+            <button class="border h-10 md:h-12 border-white px-6 md:px-8 py-2 rounded-full text-base md:text-lg font-semibold w-full sm:w-auto">
+              Learn More
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+     
+  <!-- Controls -->
+  <div class="swiper-pagination"></div>
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+</div>
+
+
+<section class="relative  py-16 px-6 md:px-20">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+
+    <!-- LEFT IMAGES -->
+    <div class="relative flex justify-center items-center">
+  <img 
+    src="images/about-us.png" 
+    class="w-full max-w-xs sm:max-w-md md:max-w-[600px] h-65 sm:h-64 md:h-[450px] object-cover rounded-2xl" 
+    alt="About Us"
+  />
+    <div class="orbit">
+       <img src="images/Veda.png" class="logo-spin w-16 h-16 sm:w-20 sm:h-20 md:w-[110px] md:h-[110px]" alt="logo">
+    </div>
+</div>
+
+    <!-- RIGHT CONTENT -->
+    <div class="space-y-6">
+      <div class="relative">
+       
+        <h4 class="text-yellow-500 font-semibold">About us</h4>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Veda Structure</h2>
+      </div>
+
+      <p class="text-gray-600 leading-relaxed">
+        Veda Structure is your one-stop shop for all astrology needs. 
+        Established in 2022, we are a team of highly qualified astrologers, 
+        pundits, and experts dedicated to providing a safe, efficient, 
+        pleasant, and personalized experience in the field of astrology, 
+        numerology, horoscope prediction, Vedic Puja and various related products.
       </p>
 
-      <div class="flex flex-wrap gap-3">
-        <span class="bg-white text-gray-700 px-4 py-2 rounded-full text-sm font-medium">Rudraksha Beads</span>
-        <span class="bg-white text-gray-700 px-4 py-2 rounded-full text-sm font-medium">Sacred Gemstones</span>
-        <span class="bg-white text-gray-700 px-4 py-2 rounded-full text-sm font-medium">Spiritual Jewelry</span>
+      <!-- FEATURES -->
+      <div class="flex gap-6">
+        <div class="flex items-center gap-2 bg-yellow-100 px-4 py-2 rounded-lg">
+          <span class="text-yellow-600 text-xl">🔮</span>
+          <span class="text-sm font-medium text-yellow-700">
+            Astrology Products & Remedies
+          </span>
+        </div>
+
+        <div class="flex items-center gap-2 bg-yellow-100 px-4 py-2 rounded-lg">
+          <span class="text-yellow-600 text-xl">📜</span>
+          <span class="text-sm font-medium text-yellow-700">
+            Personalized Reports & Puja Services
+          </span>
+        </div>
       </div>
 
-      <div class="flex gap-6 mt-6">
-        <button class="bg-red-600 hover:bg-red-700 px-8 py-4 rounded-full text-lg font-semibold">
-          Book Puja Now
-        </button>
-        <button class="border border-white px-8 py-4 rounded-full text-lg font-semibold">
-          View Services
-        </button>
-      </div>
-    </div>
-
-    <!-- RIGHT PRODUCTS -->
-    <div class="flex gap-8 mt-14 md:mt-0">
-      <img class="w-40 h-40 rounded-xl shadow-xl object-cover border-4 border-white animate-delay1" src="rudra.jpg"/>
-      <img class="w-40 h-40 rounded-xl shadow-xl object-cover border-4 border-white animate-delay2" src="gems.jpg"/>
-      <img class="w-40 h-40 rounded-xl shadow-xl object-cover border-4 border-white animate-delay3" src="bracelette.jpg"/>
+      <!-- BUTTON -->
+      <button class="mt-6 bg-yellow-400 hover:bg-yellow-500 text-white px-6 py-3 rounded-lg shadow-md flex items-center gap-2 font-semibold">
+        Read More <span>→</span>
+      </button>
     </div>
   </div>
-</div>
+</section>
 
 
-  <div class="banner-slide relative bg-cover bg-center" style="background-image:url('puja.jpg')">
-  <div class="absolute inset-0 bg-gradient-to-r from-yellow-300/70 to-orange-600/60"></div>
+<section class="py-16 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-6">
 
-  <div class="relative z-10 flex flex-col md:flex-row items-center justify-between px-24 py-32 h-full text-white">
-
-    <!-- LEFT CONTENT -->
-    <div class="max-w-[520px] space-y-4 animate-bigUp">
-      <span class="inline-block bg-white text-orange-600 px-5 py-2 rounded-full text-sm font-semibold">
-        Spiritual Wellness
-      </span>
-
-      <h1 class="text-6xl font-bold leading-tight">Inner Peace</h1>
-
-      <h3 class="text-2xl font-semibold text-yellow-200">Sacred Healing Products</h3>
-
-      <p class="text-lg text-yellow-100 leading-relaxed">
-        Discover ancient wisdom through our collection of authentic spiritual products. Find peace,
-        prosperity, and spiritual growth with sacred items.
+    <!-- Heading-->
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold text-gray-800">Product Categories</h2>
+      <p class="text-gray-600 mt-3">
+        Discover the Essence: Explore our diverse product categories
       </p>
-
-      <div class="flex flex-wrap gap-3 mt-3">
-        <span class="bg-white text-gray-700 px-4 py-2 rounded-full text-sm font-medium">Crystal Healing</span>
-        <span class="bg-white text-gray-700 px-4 py-2 rounded-full text-sm font-medium">Meditation Beads</span>
-        <span class="bg-white text-gray-700 px-4 py-2 rounded-full text-sm font-medium">Sacred Stones</span>
-      </div>
-
-      <div class="flex gap-6 mt-6">
-        <button class="bg-green-600 hover:bg-green-700 px-8 py-4 rounded-full text-lg font-semibold">
-          Shop Products
-        </button>
-        <button class="border border-white px-8 py-4 rounded-full text-lg font-semibold">
-          Learn More
-        </button>
-      </div>
     </div>
 
-    <!-- RIGHT PRODUCTS -->
-    <div class="flex gap-8 mt-14 md:mt-0">
-      <img class="w-40 h-40 rounded-xl shadow-xl object-cover border-4 border-white animate-delay1" src="gem1.jpg"/>
-      <img class="w-40 h-40 rounded-xl shadow-xl object-cover border-4 border-white animate-delay2" src="gem2.jpg"/>
-      <img class="w-40 h-40 rounded-xl shadow-xl object-cover border-4 border-white animate-delay3" src="gem3.jpg"/>
-    </div>
+   <!-- BIG CATEGORY BOXES -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
 
+<!-- All Rudraksha -->
+<div class="relative rounded-xl overflow-hidden shadow-lg group">
+  <div class="grid grid-cols-3 grid-rows-3 gap-1 w-full h-80 transform transition duration-700 group-hover:scale-110">
+    <img src="images/p1.jpg" class="object-cover w-full h-full"/>
+    <img src="images/p2.jpg" class="object-cover w-full h-full"/>
+    <img src="images/p3.jpg" class="object-cover w-full h-full"/>
+    <img src="images/p4.jpg" class="object-cover w-full h-full"/>
+    <img src="images/p5.jpg" class="object-cover w-full h-full"/>
+    <img src="images/p6.jpg" class="object-cover w-full h-full"/>
+    <img src="images/m5.jpg" class="object-cover w-full h-full"/>
+    <img src="images/p8.jpg" class="object-cover w-full h-full"/>
+    <img src="images/p9.jpg" class="object-cover w-full h-full"/>
+  </div>
+
+  <!-- Overlay -->
+  <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+    <h3 class="text-white text-2xl font-bold">All Rudraksha</h3>
   </div>
 </div>
 
 
+<!-- Siddha Mala -->
+<div class="relative rounded-xl overflow-hidden shadow-lg group">
+  <div class="grid grid-cols-3 grid-rows-3 gap-1 w-full h-80 transform transition duration-700 group-hover:scale-110">
+    <img src="images/m1.jpg" class="object-cover w-full h-full"/>
+    <img src="images/m2.jpg" class="object-cover w-full h-full"/>
+    <img src="images/m3.jpg" class="object-cover w-full h-full"/>
+    <img src="images/m4.jpg" class="object-cover w-full h-full"/>
+    <img src="images/m5.jpg" class="object-cover w-full h-full"/>
+    <img src="images/m6.jpg" class="object-cover w-full h-full"/>
+    <img src="images/m7.jpg" class="object-cover w-full h-full"/>
+    <img src="images/m8.jpg" class="object-cover w-full h-full"/>
+    <img src="images/m9.jpg" class="object-cover w-full h-full"/>
   </div>
-  
-  <div class="banner-pagination"></div>
-  <div class="banner-button-prev"></div>
-  <div class="banner-button-next"></div>
+
+  <!-- Overlay -->
+  <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+    <h3 class="text-white text-2xl font-bold">Siddha Mala</h3>
+  </div>
 </div>
 
+</div>
+
+    <!-- SMALL CATEGORY SLIDER -->
+    <div class="relative">
+      <div class="slick-slider">
 
 
-<script src="https://cdn.jsdelivr.net/npm/banner@11/banner-bundle.min.js"></script>
+        <!-- Slide 1 -->
+      <div class="px-2">
+      <div class="relative rounded-lg overflow-hidden group shadow-md">
+       <img src="images/shankh.jpg" 
+         class="w-full h-40 object-cover transform transition duration-700 group-hover:scale-110" />
+         <div class="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition duration-500 flex items-center justify-center">
+          <h4 class="text-white font-bold text-lg md:text-xl drop-shadow-md transition duration-500 group-hover:scale-110 group-hover:text-white-300">
+          Shankh
+         </h4>
+         </div>
+       </div>
+      </div>
 
+      <div class="px-2">
+      <div class="relative rounded-lg overflow-hidden group shadow-md">
+       <img src="images/gemsc.jpg" 
+         class="w-full h-40 object-cover transform transition duration-700 group-hover:scale-110" />
+         <div class="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition duration-500 flex items-center justify-center">
+          <h4 class="text-white font-bold text-lg md:text-xl drop-shadow-md transition duration-500 group-hover:scale-110 group-hover:text-white-300">
+          Gems
+         </h4>
+         </div>
+       </div>
+      </div>
+
+      <div class="px-2">
+      <div class="relative rounded-lg overflow-hidden group shadow-md">
+       <img src="images/bracelets.jpg" 
+         class="w-full h-40 object-cover transform transition duration-700 group-hover:scale-110" />
+         <div class="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition duration-500 flex items-center justify-center">
+          <h4 class="text-white font-bold text-lg md:text-xl drop-shadow-md transition duration-500 group-hover:scale-110 group-hover:text-white-300">
+          Bracelette
+         </h4>
+         </div>
+       </div>
+      </div>
+
+      <div class="px-2">
+      <div class="relative rounded-lg overflow-hidden group shadow-md">
+       <img src="images/rudra c.jpg" 
+         class="w-full h-40 object-cover transform transition duration-700 group-hover:scale-110" />
+         <div class="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition duration-500 flex items-center justify-center">
+          <h4 class="text-white font-bold text-lg md:text-xl drop-shadow-md transition duration-500 group-hover:scale-110 group-hover:text-white-300">
+          Rudraksha Combo
+         </h4>
+         </div>
+       </div>
+      </div>
+
+
+        
+      </div>
+
+      <!-- ARROWS -->
+      <button class="absolute -left-6 top-1/2 transform -translate-y-1/2 bg-gray-200 text-black w-10 h-10 rounded-full shadow-md slick-prev">‹</button>
+      <button class="absolute -right-6 top-1/2 transform -translate-y-1/2 bg-gray-200 text-black w-10 h-10 rounded-full shadow-md slick-next">›</button>
+    </div>
+
+  </div>
+</section>
+
+
+<section class="bg-gray-50 py-16 px-6 md:px-20">
+  <div class="max-w-7xl mx-auto text-center mb-12">
+    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Our Services</h2>
+    <p class="text-gray-600 mt-3 text-lg">
+      Explore our comprehensive range of spiritual services designed to support your journey towards inner peace and divine connection.
+    </p>
+  </div>
+
+  <!-- Services Grid -->
+  <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+
+    <!-- Service Card -->
+    <div class="service-card bg-white p-6 rounded-xl shadow-md transition-all duration-300">
+      <div class="w-14 h-14 flex items-center justify-center rounded-full bg-yellow-100 text-yellow-500 text-2xl mb-4">
+        🔮
+      </div>
+      <h3 class="text-lg font-semibold text-gray-800">Astrological Consultations</h3>
+      <p class="text-gray-600 mt-2 text-sm">
+        Personalized consultations by experienced astrologers to help you understand life challenges & make informed decisions.
+      </p>
+    </div>
+
+    <!-- Service Card -->
+    <div class="service-card bg-white p-6 rounded-xl shadow-md transition-all duration-300">
+      <div class="w-14 h-14 flex items-center justify-center rounded-full bg-purple-100 text-purple-500 text-2xl mb-4">
+        📜
+      </div>
+      <h3 class="text-lg font-semibold text-gray-800">Horoscope Predictions</h3>
+      <p class="text-gray-600 mt-2 text-sm">
+        Get daily, weekly, and monthly horoscope updates crafted by our expert astrologers.
+      </p>
+    </div>
+
+    <!-- Service Card -->
+    <div class="service-card bg-white p-6 rounded-xl shadow-md transition-all duration-300">
+      <div class="w-14 h-14 flex items-center justify-center rounded-full bg-pink-100 text-pink-500 text-2xl mb-4">
+        🛕
+      </div>
+      <h3 class="text-lg font-semibold text-gray-800">Online Puja Services</h3>
+      <p class="text-gray-600 mt-2 text-sm">
+        Book personalized online puja rituals with our knowledgeable pandits for your well-being.
+      </p>
+    </div>
+
+    <!-- Service Card -->
+    <div class="service-card bg-white p-6 rounded-xl shadow-md transition-all duration-300">
+      <div class="w-14 h-14 flex items-center justify-center rounded-full bg-green-100 text-green-500 text-2xl mb-4">
+        📿
+      </div>
+      <h3 class="text-lg font-semibold text-gray-800">Vedic Products</h3>
+      <p class="text-gray-600 mt-2 text-sm">
+        Explore authentic Vedic products including Rudraksha, malas, yantras & gemstones delivered to your doorstep.
+      </p>
+    </div>
+
+    <!-- Service Card -->
+    <div class="service-card bg-white p-6 rounded-xl shadow-md transition-all duration-300">
+      <div class="w-14 h-14 flex items-center justify-center rounded-full bg-blue-100 text-blue-500 text-2xl mb-4">
+        📚
+      </div>
+      <h3 class="text-lg font-semibold text-gray-800">Online Courses</h3>
+      <p class="text-gray-600 mt-2 text-sm">
+        Deepen your spiritual knowledge with our astrology & Vedic science courses available online.
+      </p>
+    </div>
+
+    <!-- Service Card -->
+    <div class="service-card bg-white p-6 rounded-xl shadow-md transition-all duration-300">
+      <div class="w-14 h-14 flex items-center justify-center rounded-full bg-orange-100 text-orange-500 text-2xl mb-4">
+        📝
+      </div>
+      <h3 class="text-lg font-semibold text-gray-800">Informative Blogs</h3>
+      <p class="text-gray-600 mt-2 text-sm">
+        Access a comprehensive library of blogs covering astrology, puja rituals, gemstones & more.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+<!-- Footer  -->
+<footer class="mt-20 relative">
+
+  <!-- Yellow Coupon swiper (floating look) -->
+ <div class="relative z-10 bg-[#f4b61e] rounded-2xl shadow-lg w-[90%] sm:w-[80%] md:w-[65%] max-w-5xl mx-auto py-6 px-2 sm:py-10 sm:px-6 md:py-12 md:px-8 text-center text-white -mb-20">
+  <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold">UNLOCK 20% OFF YOUR FIRST ORDER</h2>
+  <p class="mt-2 text-base sm:text-lg">Reveal coupon code by entering your email</p>
+
+  <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+    <input
+      type="email"
+      placeholder="Email Address"
+      class="px-4 sm:px-8 py-2 h-10 w-full sm:w-[300px] rounded-md border border-white/70 bg-transparent placeholder-white/70 text-white focus:outline-none"
+    />
+    <button class="px-6 sm:px-8 py-2 h-10 bg-green-500 hover:bg-green-600 rounded-md font-semibold w-full sm:w-auto">
+      Reveal coupon
+    </button>
+  </div>
+</div>
+
+  <!-- DARK FOOTER (nav links area) -->
+  <div class="bg-[#081124] text-white pt-28 pb-12 px-10">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12">
+
+      <!-- COL-1 -->
+      <div>
+        <img src="images/footer-logo.png" class="h-12" alt="Logo">
+        <p class="mt-30 text-sm leading-relaxed text-gray-300">
+          #1 Canadian top rated online dispensary that meets the consistent needs in every single medical marijuana aspect.
+          The team here at TopShelfBC is heavily involved in the Canadian cannabis industry for over 15 years.
+          We strive to provide the top quality products, service and care at the lowest prices you'll ever find.
+        </p>
+      </div>
+
+      <!-- COL-2 -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">QUICK LINK</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="hover:text-yellow-300">Track Your Order</a></li>
+          <li><a href="#" class="hover:text-yellow-300">Shop All</a></li>
+          <li><a href="#" class="hover:text-yellow-300">Flower</a></li>
+          <li><a href="#" class="hover:text-yellow-300">Edibles</a></li>
+          <li><a href="#" class="hover:text-yellow-300">Concentrates</a></li>
+          <li><a href="#" class="hover:text-yellow-300">Refunds</a></li>
+        </ul>
+      </div>
+
+      <!-- COL-3 -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">MORE</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="hover:text-yellow-300">Mushrooms</a></li>
+          <li><a href="#" class="hover:text-yellow-300">Promotions / Bundles</a></li>
+          <li><a href="#" class="hover:text-yellow-300">Support</a></li>
+          <li><a href="#" class="hover:text-yellow-300">Reward</a></li>
+          <li><a href="#" class="hover:text-yellow-300">Blog</a></li>
+          <li><a href="#" class="hover:text-yellow-300">Shipping Faq</a></li>
+        </ul>
+      </div>
+
+      <!-- COL-4 -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">CONTACT US</h3>
+        <ul class="space-y-2 text-sm">
+          <li class="hover:text-yellow-300">info@topshelfbcc.cc</li>
+          <br>
+          <li class="hover:text-yellow-300">+1 9279348162</li>
+          <br>
+          <li class="hover:text-yellow-300">info@topshelfbcc.cc</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Payment icons -->
+    <div class="mt-10 border-t border-white/20 pt-10  flex justify-start gap-4">
+      <img src="images/visa.jpg" class="h-7">
+      <img src="images/paypal.jpg" class="h-7">
+      <img src="images/card.jpg" class="h-7">
+    </div>
+  </div>
+
+  <!-- COPYRIGHT STRIP -->
+  <div class="bg-black py-4 px-6 flex flex-col md:flex-row items-center justify-between text-xs text-white/60 gap-3">
+    <div>© 2022 Top Shelf BC. All Rights Reserved.</div>
+    <div class="flex gap-4">
+      <a href="#" class="hover:text-white">Out Of Stock</a>
+      <a href="#" class="hover:text-white">Privacy Policy</a>
+      <a href="#" class="hover:text-white">Terms & Conditions</a>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
 <script src="script.js"></script>
 
 </body>
